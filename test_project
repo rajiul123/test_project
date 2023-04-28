@@ -1,0 +1,73 @@
+class Temperature:
+    def __init__(self, location, year, month, date, temperature):
+        self.location = location
+        self.year = year
+        self.month = month
+        self.date = date
+        self.temperature = temperature
+
+    @property
+    def location(self):
+        return self.location
+
+    @location.setter
+    def location(self, value):
+        if value != ' ':
+            self.location = value
+        else:
+            raise ValueError("This Field Cannot be empty")
+
+    @property
+    def year(self):
+        return self.year
+
+    @year.setter
+    def year(self, value):
+        if value >= 1584 and value <= 9999:
+            self.year = value
+        else:
+            raise ValueError("This field cannot be less than 1584 and greater than 9999")
+
+    @property
+    def month(self):
+        return self.month
+
+    @month.setter
+    def month(self, value):
+        if value in ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']:
+            self.month = value
+        else:
+            raise ValueError("There is no month like what you have mentioned")
+
+    @property
+    def date(self):
+        return self.date
+
+    @date.setter
+    def date(self, value):
+        if value > 1 or value < 31:
+            self.date = value
+        else:
+            raise ValueError("There is no date like what you have mentioned")
+
+    @property
+    def temperature(self):
+        return self.temperature
+
+    @temperature.setter
+    def temperature(self, value):
+        if value > -273.15:
+            self.temperature = value
+        else:
+            raise ValueError("This is below absolute temperature")
+
+    def date_construct(self):
+        if self.date == 1:
+            dt = self.date + 'st' + ' ' + self.month.title()
+        if self.date == 2:
+            dt = self.date + 'nd' + ' ' + self.month.title()
+        if self.date == 3:
+            dt = self.date + 'rd' + ' ' + self.month.title()
+        if self.date < 3:
+            dt = self.date + 'th' + ' ' + self.month.title()
+        return dt
